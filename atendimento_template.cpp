@@ -145,14 +145,26 @@ struct ListaMedicos {
     //         Adiciona um médico no final da lista
     void adicionarMedico(const string& nome) {
         // Dica: percorra até o último nó e insira no final
-        // ...
+        No* novo = new No(nome);
+        if (head == nullptr) {
+            head = novo;
+            return;
+        }
+        No* p = head;
+        while (p->prox != nullptr) p = p->prox;
+        p->prox = novo;
     }
 
     // TODO 8: Implemente chamarMedico()
     //         Remove e retorna o primeiro médico disponível
     string chamarMedico() {
         // Dica: remova do início (como removerInicio da lista)
-        return "";  // substitua pelo retorno correto
+        if (head == nullptr) return "";
+        No* removido = head;
+        string nome  = removido->nome;
+        head = head->prox;
+        delete removido;
+        return nome;
     }
 
     // TODO 9: Implemente percorrer()
@@ -160,7 +172,15 @@ struct ListaMedicos {
     void percorrer(const string& prefixo = "") const {
         if (!prefixo.empty()) cout << prefixo << ": ";
         // Dica: percorra com No* p = head; while(p) { ... p = p->prox; }
-        cout << "(lista vazia)\n";
+        if (head == nullptr) {
+            cout << "(lista vazia)\n";
+            return;
+        }
+        for (No* p = head; p != nullptr; p = p->prox) {
+            cout << p->nome;
+            if (p->prox != nullptr) cout << " -> ";
+        }
+        cout << "\n";
     }
 
     bool temMedico() const { return head != nullptr; }
@@ -257,7 +277,7 @@ int main() {
 // ════════════════════════════════════════════════════════════════
 // CHECKLIST DE ENTREGA
 // ════════════════════════════════════════════════════════════════
-// [ ] TODO 1 — enqueue funciona (paciente entra na fila)
+// [x] TODO 1 — enqueue funciona (paciente entra na fila)
 // [ ] TODO 2 — dequeue funciona (paciente sai da fila, memória liberada)
 // [ ] TODO 3 — frente_peek retorna o nome sem remover
 // [ ] TODO 4 — push empilha no histórico
