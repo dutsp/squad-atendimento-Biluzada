@@ -208,7 +208,16 @@ void imprimirHistorico(PilhaHistorico& hist) {
         cout << "(nenhum atendimento registrado)\n";
         return;
     }
-    // ...
+    PilhaHistorico aux;
+    int n = 1;
+    while (!hist.isEmpty()) {
+        string item = hist.pop();
+        cout << "  " << n++ << ". " << item << "\n";
+        aux.push(item);
+    }
+    while (!aux.isEmpty()) {
+        hist.push(aux.pop());
+    }
 }
 
 // ════════════════════════════════════════════════════════════════
@@ -278,16 +287,16 @@ int main() {
 // CHECKLIST DE ENTREGA
 // ════════════════════════════════════════════════════════════════
 // [x] TODO 1 — enqueue funciona (paciente entra na fila)
-// [ ] TODO 2 — dequeue funciona (paciente sai da fila, memória liberada)
-// [ ] TODO 3 — frente_peek retorna o nome sem remover
-// [ ] TODO 4 — push empilha no histórico
-// [ ] TODO 5 — pop desempilha e libera memória
-// [ ] TODO 6 — peek retorna o topo sem remover
-// [ ] TODO 7 — adicionarMedico insere no final da lista
-// [ ] TODO 8 — chamarMedico remove do início e retorna o nome
-// [ ] TODO 9 — percorrer imprime todos os médicos com setas
-// [ ] TODO 10 — imprimirHistorico imprime sem destruir os dados
-// [ ] Programa compila sem warnings: g++ -std=c++17 -Wall -o sis main.cpp
-// [ ] Sem vazamentos de memória (todo new tem delete correspondente)
-// [ ] Repositório no GitHub com histórico de commits organizado
-// [ ] README.md com instrução de compilação e exemplo de saída
+// [x] TODO 2 — dequeue funciona (paciente sai da fila, memória liberada)
+// [x] TODO 3 — frente_peek retorna o nome sem remover
+// [x] TODO 4 — push empilha no histórico
+// [x] TODO 5 — pop desempilha e libera memória
+// [x] TODO 6 — peek retorna o topo sem remover
+// [x] TODO 7 — adicionarMedico insere no final da lista
+// [x] TODO 8 — chamarMedico remove do início e retorna o nome
+// [x] TODO 9 — percorrer imprime todos os médicos com setas
+// [x] TODO 10 — imprimirHistorico imprime sem destruir os dados
+// [x] Programa compila sem warnings: g++ -std=c++17 -Wall -o sis main.cpp
+// [x] Sem vazamentos de memória (todo new tem delete correspondente)
+// [x] Repositório no GitHub com histórico de commits organizado
+// [x] README.md com instrução de compilação e exemplo de saída
